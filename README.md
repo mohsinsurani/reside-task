@@ -1,12 +1,12 @@
 # Dengue Infection Indicators Web App
 
-A simple React web application for viewing dengue infection indicator values for regions by country.
+A React web application for viewing dengue infection indicator values for regions by country.
 
 ---
 
-## User Story
+## Use Case
 
-As a public health worker, I want to see indicator values for dengue infection for regions by country, in a table format.
+I acting as a public health worker, wanna see indicator values for dengue infection for regions by country, in a tabular format.
 
 ---
 
@@ -18,7 +18,7 @@ As a public health worker, I want to see indicator values for dengue infection f
 - Filter by summary type
 - View indicator values by region in a table
 - View a bar chart of the selected indicator
-- Automatically adapts to:
+- Automatically scaling to:
   - new indicators
   - different age groups
   - updated metadata labels
