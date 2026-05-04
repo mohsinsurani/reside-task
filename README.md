@@ -1,51 +1,73 @@
-# reside-task
-# Dengue Infection Indicators
+# React + TypeScript + Vite
 
-A simple React web application for viewing dengue infection indicator values for regions by country.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## User story
+Currently, two official plugins are available:
 
-Public health sector worker wanna see indicator values for dengue infection for regions by country, in a table format.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Features
+## React Compiler
 
-- Load dengue indicator data from local JSON files
-- Select country by country ID
-- Filter by age group
-- Filter by summary type
-- View indicator values by region in a table
-- View a bar chart of the selected indicator by region
-- Dynamically detects indicators from the dataset, so new indicators appear automatically
-- Dynamically detects age groups and summary types from the dataset
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Tech stack
+## Expanding the ESLint configuration
 
-- React
-- TypeScript
-- Vite
-- Recharts
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## Architecture overview
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-The application is intentionally small and split into clear layers:
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-```txt
-src/
-├── components/        # Reusable UI components
-├── lib/               # Data transformation and formatting helpers
-├── types/             # TypeScript types for data and metadata
-├── test/              # Test setup configuration
-├── App.tsx            # Main application state and page composition
-└── index.css          # Global styling
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-## How to run
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-Install dependencies:
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-```bash
-npm install
-
-## How to run tests
-
-```bash
-npm run test
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
